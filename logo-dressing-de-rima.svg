@@ -1,0 +1,21 @@
+<svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Logo Le Dressing de Rima</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&amp;family=Work+Sans:wght@400&amp;display=swap');
+    .word { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 600; fill: #6B2737; }
+    .sub  { font-family: 'Work Sans', Arial, sans-serif; font-weight: 400; fill: #C9973F; letter-spacing: 3px; }
+  </style>
+
+  <!-- Icone : tringle avec cintre -->
+  <g transform="translate(30,30)">
+    <line x1="0" y1="14" x2="90" y2="14" stroke="#C9973F" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="14" r="4" fill="#C9973F"/>
+    <circle cx="90" cy="14" r="4" fill="#C9973F"/>
+    <path d="M45 20 L45 30 M25 55 L45 32 L65 55 M20 55 L70 55" 
+          fill="none" stroke="#6B2737" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="45" cy="26" r="3.5" fill="#6B2737"/>
+  </g>
+
+  <text x="140" y="72" class="word" font-size="34">Le Dressing de Rima</text>
+  <text x="140" y="96" class="sub" font-size="12">HABITS · ACCESSOIRES · SOINS DE PEAU</text>
+</svg>
