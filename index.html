@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Dressing de Rima — Habits, accessoires & soins de peau</title>
+<meta name="description" content="Boutique en ligne sénégalaise : habits, accessoires et soins de peau. Commande via WhatsApp, paiement Wave, Orange Money ou cash à la livraison.">
+
+<!-- ⚠️ Remplacer YOUR-DOMAIN par le domaine réel une fois le site hébergé (ex: https://ledressingderima.netlify.app) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Le Dressing de Rima">
+<meta property="og:title" content="Le Dressing de Rima — Habits, accessoires & soins de peau">
+<meta property="og:description" content="Habits, accessoires et soins de peau. Commande simple sur WhatsApp, livraison Dakar & régions, paiement Wave, Orange Money ou cash.">
+<meta property="og:image" content="https://YOUR-DOMAIN/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta property="og:locale" content="fr_SN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Le Dressing de Rima">
+<meta name="twitter:description" content="Habits, accessoires et soins de peau. Commande sur WhatsApp, livraison Dakar & régions.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN/og-image.png">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#6B2737;
+    --wine-dark:#4A1B26;
+    --gold:#C9973F;
+    --sand:#F2E1D3;
+    --blush:#E8B9BE;
+    --blush-text:#72243E;
+    --ink:#2A2024;
+    --cream:#FBF6EF;
+    --muted:#8a7d78;
+    --whatsapp:#25D366;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  /* Bandeau annonce */
+  .announce{
+    background:var(--wine);
+    color:var(--sand);
+    text-align:center;
+    font-size:13px;
+    padding:9px 12px;
+    letter-spacing:.02em;
+  }
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,246,239,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(107,39,55,.12);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1140px;margin:0 auto;
+  }
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-word{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+    font-size:22px;color:var(--wine);
+  }
+  .nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;}
+  .nav-links a:hover{color:var(--wine);}
+  .nav-cta{
+    display:flex;align-items:center;gap:8px;
+    background:var(--whatsapp);color:#fff;
+    padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;
+  }
+  .burger{display:none;background:none;border:none;font-size:22px;color:var(--wine);cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:40px;
+    align-items:center;padding:64px 0 56px;
+  }
+  .eyebrow{
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:12px;
+  }
+  h1{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:44px;line-height:1.12;color:var(--wine-dark);
+    margin-bottom:18px;
+  }
+  .hero p.lead{
+    font-size:16px;color:var(--muted);max-width:42ch;margin-bottom:28px;
+  }
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:999px;font-size:14px;font-weight:600;
+    border:1.5px solid transparent;cursor:pointer;transition:transform .15s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--wine);color:var(--sand);}
+  .btn-outline{background:transparent;border-color:var(--wine);color:var(--wine);}
+  .btn-whatsapp{background:var(--whatsapp);color:#fff;}
+
+  /* Rail illustration */
+  .rail-wrap{position:relative;height:220px;}
+  .rail-line{position:absolute;top:20px;left:5%;right:5%;height:3px;background:var(--gold);border-radius:3px;}
+  .rail-line::before,.rail-line::after{
+    content:"";position:absolute;top:-4px;width:11px;height:11px;border-radius:50%;background:var(--gold);
+  }
+  .rail-line::before{left:-4px;}
+  .rail-line::after{right:-4px;}
+  .hanger-item{
+    position:absolute;top:36px;display:flex;flex-direction:column;align-items:center;
+    transition:transform .2s ease;cursor:pointer;
+  }
+  .hanger-item:hover{transform:rotate(-5deg);}
+  .hanger-item:nth-child(3):hover{transform:rotate(5deg);}
+  .hanger-item svg{width:30px;height:30px;color:var(--wine);}
+  .hanger-tag{
+    font-size:12px;padding:7px 12px;border-radius:8px;margin-top:8px;font-weight:500;white-space:nowrap;
+  }
+  .tag-1{background:var(--blush);color:var(--blush-text);}
+  .tag-2{background:var(--sand);color:var(--wine-dark);}
+  .tag-3{background:var(--blush);color:var(--blush-text);}
+
+  /* Sections */
+  section{padding:56px 0;}
+  .section-head{margin-bottom:28px;text-align:center;}
+  .section-head p.tag{
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;
+  }
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:28px;color:var(--wine-dark);}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .card{
+    background:#fff;border:1px solid rgba(107,39,55,.1);border-radius:var(--radius);
+    overflow:hidden;transition:box-shadow .2s;
+  }
+  .card:hover{box-shadow:0 6px 20px rgba(107,39,55,.08);}
+  .card-img{
+    height:180px;overflow:hidden;background:var(--sand);
+  }
+  .card-img img, .card-img video{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .card-body{padding:18px;}
+  .card-body h3{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .card-body p.desc{font-size:13px;color:var(--muted);margin-bottom:10px;min-height:38px;}
+  .price{font-size:15px;font-weight:600;color:var(--gold);margin-bottom:14px;}
+  .card-btn{
+    width:100%;padding:10px;border-radius:999px;border:1.5px solid var(--wine);
+    background:transparent;color:var(--wine);font-size:13px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+  }
+  .card-btn:hover{background:var(--wine);color:var(--sand);}
+
+  .bg-blush{background:var(--blush);}
+  .bg-sand{background:var(--sand);}
+
+  /* Paiement */
+  .pay-section{background:#fff;}
+  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px;}
+  .pay-card{
+    border:1px solid rgba(107,39,55,.12);border-radius:var(--radius);
+    padding:22px;text-align:center;
+  }
+  .pay-card svg{width:34px;height:34px;color:var(--wine);margin:0 auto 12px;}
+  .pay-card h3{font-size:15px;margin-bottom:6px;}
+  .pay-card p{font-size:13px;color:var(--muted);}
+  .pay-note{
+    margin-top:24px;background:var(--sand);border-radius:var(--radius);
+    padding:18px 22px;font-size:13.5px;color:var(--wine-dark);
+  }
+
+  /* Trust strip */
+  .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center;}
+  .trust svg{width:26px;height:26px;color:var(--wine);margin:0 auto 8px;}
+  .trust p{font-size:13px;color:var(--muted);}
+
+  /* Footer */
+  footer{background:var(--wine-dark);color:var(--sand);padding:44px 0 24px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:28px;}
+  footer h4{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:19px;margin-bottom:10px;}
+  footer p{font-size:13px;color:rgba(242,225,211,.75);}
+  .foot-links{list-style:none;font-size:13.5px;}
+  .foot-links li{margin-bottom:8px;color:rgba(242,225,211,.85);}
+  .foot-bottom{
+    border-top:1px solid rgba(242,225,211,.15);padding-top:18px;
+    font-size:12px;color:rgba(242,225,211,.55);text-align:center;
+  }
+
+  /* WhatsApp flottant */
+  .whatsapp-float{
+    position:fixed;bottom:22px;right:22px;z-index:100;
+    width:56px;height:56px;border-radius:50%;background:var(--whatsapp);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.2);
+    cursor:pointer;
+  }
+  .whatsapp-float svg{width:28px;height:28px;color:#fff;}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;padding-top:32px;}
+    .nav-links{display:none;}
+    .burger{display:block;}
+    .grid-3, .pay-grid, .trust, .footer-grid{grid-template-columns:1fr;}
+    h1{font-size:32px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">Livraison Dakar &amp; régions · Paiement Wave, Orange Money ou cash à la livraison</div>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <img src="logo-dressing-de-rima.png" alt="Le Dressing de Rima" style="height:40px;width:auto;">
+    </div>
+    <nav class="nav-links">
+      <a href="#habits">Habits</a>
+      <a href="#accessoires">Accessoires</a>
+      <a href="#soins">Soins</a>
+      <a href="#paiement">Paiement</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/221764459709?text=Bonjour%20Le%20Dressing%20de%20Rima%2C%20je%20voudrais%20des%20informations." target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38Z"/></svg>
+      WhatsApp
+    </a>
+    <button class="burger">☰</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Nouvelle collection</p>
+      <h1>Ton dressing,<br>sans sortir de chez toi</h1>
+      <p class="lead">Habits, accessoires et soins de peau sélectionnés pour toi. Choisis, écris-nous sur WhatsApp, on livre.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#habits">Voir la boutique</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/221764459709?text=Bonjour%2C%20je%20voudrais%20passer%20une%20commande." target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Z"/></svg>
+          Commander
+        </a>
+      </div>
+    </div>
+    <div class="rail-wrap">
+      <div class="rail-line"></div>
+      <a class="hanger-item" style="left:6%;" href="#habits">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v3M6 15l6-6 6 6M4 15h16"/></svg>
+        <span class="hanger-tag tag-1">Habits</span>
+      </a>
+      <a class="hanger-item" style="left:41%;" href="#accessoires">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 12l10 10 10-10z"/></svg>
+        <span class="hanger-tag tag-2">Accessoires</span>
+      </a>
+      <a class="hanger-item" style="right:4%;" href="#soins">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></svg>
+        <span class="hanger-tag tag-3">Soins</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- HABITS -->
+<section id="habits">
+  <div class="container">
+    <div class="section-head">
+      <p class="tag">Habits</p>
+      <h2>Des tenues qui te ressemblent</h2>
+    </div>
+    <div class="grid-3" id="grid-habits"></div>
+  </div>
+</section>
+
+<!-- ACCESSOIRES -->
+<section id="accessoires" style="background:#fff;">
+  <div class="container">
+    <div class="section-head">
+      <p class="tag">Accessoires</p>
+      <h2>La touche qui change tout</h2>
+    </div>
+    <div class="grid-3" id="grid-accessoires"></div>
+  </div>
+</section>
+
+<!-- SOINS -->
+<section id="soins">
+  <div class="container">
+    <div class="section-head">
+      <p class="tag">Soins de peau</p>
+      <h2>Prendre soin de toi, simplement</h2>
+    </div>
+    <div class="grid-3" id="grid-soins"></div>
+  </div>
+</section>
+
+<!-- PAIEMENT -->
+<section id="paiement" class="pay-section">
+  <div class="container">
+    <div class="section-head">
+      <p class="tag">Paiement</p>
+      <h2>Comment payer ta commande</h2>
+    </div>
+    <div class="pay-grid">
+      <div class="pay-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+        <h3>Wave</h3>
+        <p>Envoie le montant au numéro communiqué sur WhatsApp, puis partage la capture d'écran pour valider.</p>
+      </div>
+      <div class="pay-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+        <h3>Orange Money</h3>
+        <p>Même principe : transfert au numéro dédié, confirmation par capture d'écran sur WhatsApp.</p>
+      </div>
+      <div class="pay-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h20M6 12v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <h3>Cash à la livraison</h3>
+        <p>Paiement en espèces directement au livreur, disponible pour Dakar et certaines régions.</p>
+      </div>
+    </div>
+    <div class="pay-note">
+      Pas de paiement en ligne par carte pour le moment : la commande se confirme entièrement sur WhatsApp, ce qui reste le mode le plus simple et le plus rassurant pour la clientèle au Sénégal.
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section>
+  <div class="container">
+    <div class="trust">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><p>Livraison Dakar &amp; régions</p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><p>Wave, Orange Money, cash</p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3.5-7.2M21 4v5h-5"/></svg><p>Échange possible sous 48h</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact-form" style="background:#fff;">
+  <div class="container" style="max-width:640px;">
+    <div class="section-head">
+      <p class="tag">Contact</p>
+      <h2>Une question ? Écris-nous</h2>
+    </div>
+    <form id="contactForm" onsubmit="return envoyerFormulaire(event)">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;">Ton nom</label>
+        <input type="text" id="cf-nom" required placeholder="Ton nom"
+          style="width:100%;padding:11px 14px;border:1px solid rgba(107,39,55,.2);border-radius:8px;font-size:14px;font-family:inherit;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;">Ton numéro WhatsApp</label>
+        <input type="tel" id="cf-tel" required placeholder="+221 77 000 00 00"
+          style="width:100%;padding:11px 14px;border:1px solid rgba(107,39,55,.2);border-radius:8px;font-size:14px;font-family:inherit;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;">Ce que tu cherches</label>
+        <select id="cf-sujet"
+          style="width:100%;padding:11px 14px;border:1px solid rgba(107,39,55,.2);border-radius:8px;font-size:14px;font-family:inherit;background:#fff;">
+          <option>Habits</option>
+          <option>Accessoires</option>
+          <option>Soins de peau</option>
+          <option>Autre demande</option>
+        </select>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;">Ton message</label>
+        <textarea id="cf-message" required rows="4" placeholder="Décris ce que tu cherches..."
+          style="width:100%;padding:11px 14px;border:1px solid rgba(107,39,55,.2);border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;"></textarea>
+      </div>
+      <button type="submit" class="btn btn-whatsapp" style="width:100%;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Z"/></svg>
+        Envoyer sur WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Le Dressing de Rima</h4>
+        <p>Habits, accessoires et soins de peau pensés pour les filles. Commande simple, livraison rapide.</p>
+      </div>
+      <div>
+        <h4 style="font-size:15px;font-style:normal;">Boutique</h4>
+        <ul class="foot-links">
+          <li><a href="#habits">Habits</a></li>
+          <li><a href="#accessoires">Accessoires</a></li>
+          <li><a href="#soins">Soins de peau</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:15px;font-style:normal;">Contact</h4>
+        <ul class="foot-links">
+          <li>WhatsApp : +221 76 445 97 09</li>
+          <li>Dakar, Sénégal</li>
+          <li>Instagram : @ledressingderima</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Le Dressing de Rima. Tous droits réservés.</div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/221764459709?text=Bonjour%2C%20je%20voudrais%20des%20informations." target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38Z"/></svg>
+</a>
+
+<script src="products.js"></script>
+<script>
+  const WHATSAPP_NUMBER = "221764459709"; // ⚠️ Remplacer par le vrai numéro WhatsApp Business
+
+  function creerFicheProduit(p) {
+    const media = p.video
+      ? `<video src="${p.video}" autoplay muted loop playsinline></video>`
+      : `<img src="${p.image}" alt="${p.nom}" loading="lazy">`;
+
+    return `
+      <div class="card">
+        <div class="card-img">${media}</div>
+        <div class="card-body">
+          <h3>${p.nom}</h3>
+          <p class="desc">${p.description}</p>
+          <p class="price">${p.prix}</p>
+          <button class="card-btn" onclick="commanderWhatsApp('${p.nom.replace(/'/g, "\\'")}', '${p.prix}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Z"/></svg>
+            Commander
+          </button>
+        </div>
+      </div>`;
+  }
+
+  function afficherProduits() {
+    document.getElementById("grid-habits").innerHTML = PRODUITS.habits.map(creerFicheProduit).join("");
+    document.getElementById("grid-accessoires").innerHTML = PRODUITS.accessoires.map(creerFicheProduit).join("");
+    document.getElementById("grid-soins").innerHTML = PRODUITS.soins.map(creerFicheProduit).join("");
+  }
+  afficherProduits();
+
+  function commanderWhatsApp(nom, prix) {
+    const message = `Bonjour, je voudrais commander : ${nom} (${prix}). Est-ce disponible ?`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  }
+
+  function envoyerFormulaire(event) {
+    event.preventDefault();
+    const nom = document.getElementById("cf-nom").value.trim();
+    const tel = document.getElementById("cf-tel").value.trim();
+    const sujet = document.getElementById("cf-sujet").value;
+    const msg = document.getElementById("cf-message").value.trim();
+
+    const message = `Bonjour, je m'appelle ${nom} (contact : ${tel}).\nSujet : ${sujet}\nMessage : ${msg}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+    return false;
+  }
+</script>
+
+</body>
+</html>
