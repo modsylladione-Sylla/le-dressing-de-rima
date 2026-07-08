@@ -1,12 +1,26 @@
 # Guide — Ajouter ou modifier des photos, vidéos et produits
 
-Ce site est organisé pour que tu puisses changer les produits **sans toucher au code**.
+Ce site est organisé pour que tu puisses changer les produits depuis une page d'administration, sans modifier le code.
+
+## Ajouter ou modifier un produit
+
+1. Ouvre `admin.html` sur le site publié.
+2. Renseigne le jeton administrateur.
+3. Clique sur un produit existant pour le modifier, ou remplis le formulaire vide pour en ajouter un nouveau.
+4. Clique sur **Enregistrer**.
+
+Le jeton administrateur correspond à la variable d'environnement Netlify `PRODUCT_ADMIN_TOKEN`. Elle doit être configurée dans Netlify avant de pouvoir enregistrer les changements.
+
+## Photos et vidéos
+
+Les champs `Image` et `Vidéo` attendent un chemin de fichier, par exemple `images/robe-rouge.jpg` ou `videos/robe-rouge.mp4`.
 
 ## Où se trouve quoi
 
 ```
 index.html         → le site (ne pas modifier sauf si tu sais ce que tu fais)
-products.js        → la liste des produits (photos, vidéos, prix, description) → C'EST ICI QUE TU TRAVAILLES
+admin.html         → la page pour ajouter et modifier les produits
+products.js        → liste de secours utilisée si l'API n'est pas encore disponible
 images/            → toutes les photos des produits
 videos/            → toutes les vidéos des produits
 ```
@@ -53,13 +67,6 @@ Colle-le juste avant le `]` qui ferme la catégorie, modifie les informations, e
 
 Supprime tout le bloc `{ ... }` correspondant dans `products.js`, virgule comprise.
 
-## Remettre le site en ligne après une modification
+## Mise en ligne
 
-Comme le site est hébergé via Netlify Drop, chaque modification nécessite de renvoyer le dossier complet :
-
-1. Va sur https://app.netlify.com/drop
-2. Glisse-dépose **tout le dossier** (index.html + products.js + images + videos + les autres fichiers)
-3. Netlify remplace l'ancienne version par la nouvelle
-
-### Pour éviter de tout renvoyer à chaque fois
-Si tu fais souvent des changements, il vaut mieux connecter le site à un compte Netlify (gratuit) relié à GitHub : chaque modification se met à jour automatiquement en ligne, sans glisser-déposer. Dis-le-moi si tu veux qu'on mette ça en place, c'est un peu plus long à configurer la première fois mais bien plus pratique ensuite.
+Les produits enregistrés depuis `admin.html` sont stockés dans Netlify Database. Une fois le site déployé avec cette version, ajouter ou modifier un produit ne demande plus de redéployer le site.

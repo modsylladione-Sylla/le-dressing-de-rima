@@ -237,6 +237,7 @@
       <a href="#soins">Soins</a>
       <a href="#paiement">Paiement</a>
       <a href="#contact">Contact</a>
+      <a href="admin.html">Admin</a>
     </nav>
     <a class="nav-cta" href="https://wa.me/221764459709?text=Bonjour%20Le%20Dressing%20de%20Rima%2C%20je%20voudrais%20des%20informations." target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38Z"/></svg>
@@ -429,19 +430,34 @@
 <script>
   const WHATSAPP_NUMBER = "221764459709"; // ⚠️ Remplacer par le vrai numéro WhatsApp Business
 
+  function escapeHtml(value) {
+    return String(value || "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+  }
+
   function creerFicheProduit(p) {
+    const nom = escapeHtml(p.nom);
+    const description = escapeHtml(p.description);
+    const prix = escapeHtml(p.prix);
+    const image = escapeHtml(p.image);
+    const video = escapeHtml(p.video);
     const media = p.video
-      ? `<video src="${p.video}" autoplay muted loop playsinline></video>`
-      : `<img src="${p.image}" alt="${p.nom}" loading="lazy">`;
+      ? `<video src="${video}" autoplay muted loop playsinline></video>`
+      : `<img src="${image}" alt="${nom}" loading="lazy">`;
 
     return `
       <div class="card">
         <div class="card-img">${media}</div>
         <div class="card-body">
-          <h3>${p.nom}</h3>
-          <p class="desc">${p.description}</p>
-          <p class="price">${p.prix}</p>
-          <button class="card-btn" onclick="commanderWhatsApp('${p.nom.replace(/'/g, "\\'")}', '${p.prix}')">
+          <h3>${nom}</h3>
+          <p class="desc">${description}</p>
+          <p class="price">${prix}</p>
+          <button class="card-btn" data-product="${nom}" data-price="${prix}">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Z"/></svg>
             Commander
           </button>
@@ -449,12 +465,27 @@
       </div>`;
   }
 
-  function afficherProduits() {
-    document.getElementById("grid-habits").innerHTML = PRODUITS.habits.map(creerFicheProduit).join("");
-    document.getElementById("grid-accessoires").innerHTML = PRODUITS.accessoires.map(creerFicheProduit).join("");
-    document.getElementById("grid-soins").innerHTML = PRODUITS.soins.map(creerFicheProduit).join("");
+  function afficherProduits(produits) {
+    document.getElementById("grid-habits").innerHTML = produits.habits.map(creerFicheProduit).join("");
+    document.getElementById("grid-accessoires").innerHTML = produits.accessoires.map(creerFicheProduit).join("");
+    document.getElementById("grid-soins").innerHTML = produits.soins.map(creerFicheProduit).join("");
+    document.querySelectorAll(".card-btn[data-product]").forEach((button) => {
+      button.addEventListener("click", () => commanderWhatsApp(button.dataset.product, button.dataset.price));
+    });
   }
-  afficherProduits();
+
+  async function chargerProduits() {
+    try {
+      const response = await fetch("/api/products");
+      if (!response.ok) {
+        throw new Error("API indisponible");
+      }
+      afficherProduits(await response.json());
+    } catch (error) {
+      afficherProduits(PRODUITS);
+    }
+  }
+  chargerProduits();
 
   function commanderWhatsApp(nom, prix) {
     const message = `Bonjour, je voudrais commander : ${nom} (${prix}). Est-ce disponible ?`;
