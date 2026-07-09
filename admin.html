@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administration — Le Dressing de Rima</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#6B2737; --wine-dark:#4A1B26; --gold:#C9973F;
+    --sand:#F2E1D3; --blush:#E8B9BE; --ink:#2A2024; --cream:#FBF6EF; --muted:#8a7d78;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Work Sans',sans-serif; background:var(--cream); color:var(--ink);
+    margin:0; padding:28px 20px 80px;
+  }
+  h1{font-family:'Fraunces',serif;font-weight:600;color:var(--wine-dark);font-size:24px;margin:0 0 20px;text-align:center;}
+  .wrap{max-width:1100px;margin:0 auto;}
+  .layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+  @media (max-width:860px){.layout{grid-template-columns:1fr;}}
+  .panel{background:#fff;border-radius:14px;border:1px solid rgba(107,39,55,.12);padding:24px;}
+  .panel h2{font-family:'Fraunces',serif;font-weight:600;color:var(--wine-dark);font-size:19px;margin:0 0 18px;}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;}
+  label:first-child{margin-top:0;}
+  input[type=text], input[type=number], textarea, select{
+    width:100%;padding:10px 12px;border:1px solid rgba(107,39,55,.25);border-radius:8px;
+    font-size:14px;font-family:inherit;background:#fff;
+  }
+  textarea{resize:vertical;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{
+    padding:11px 18px;border-radius:999px;border:none;font-size:14px;font-weight:600;
+    cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  }
+  .btn-primary{background:var(--wine);color:var(--sand);}
+  .btn-secondary{background:var(--sand);color:var(--wine-dark);}
+  .btn-danger{background:#fff;color:#a33;border:1px solid #a33;}
+  .btn:disabled{opacity:.5;cursor:not-allowed;}
+  .btn-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .tab{
+    padding:8px 16px;border-radius:999px;border:1px solid rgba(107,39,55,.25);
+    background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:var(--wine-dark);
+  }
+  .tab.active{background:var(--wine);color:var(--sand);border-color:var(--wine);}
+  .prod-item{
+    display:flex;justify-content:space-between;align-items:center;
+    border:1px solid rgba(107,39,55,.12);border-radius:10px;padding:12px 14px;margin-bottom:10px;
+  }
+  .prod-item img{width:44px;height:44px;object-fit:cover;border-radius:8px;margin-right:10px;background:var(--sand);}
+  .prod-info{display:flex;align-items:center;flex:1;min-width:0;}
+  .prod-text h3{font-size:14px;margin:0;}
+  .prod-text p{font-size:12px;color:var(--muted);margin:2px 0 0;}
+  .prod-actions{display:flex;gap:6px;flex-shrink:0;}
+  .prod-actions button{
+    padding:6px 12px;font-size:12px;border-radius:999px;border:1px solid rgba(107,39,55,.25);
+    background:#fff;cursor:pointer;
+  }
+  .status{
+    margin-top:14px;padding:10px 14px;border-radius:8px;font-size:13px;display:none;
+  }
+  .status.ok{background:#dff3e3;color:#1e5c33;display:block;}
+  .status.err{background:#fbe3e3;color:#8a2020;display:block;}
+  .status.loading{background:var(--sand);color:var(--wine-dark);display:block;}
+  .hint{font-size:12px;color:var(--muted);margin-top:6px;}
+  .config-box{
+    background:var(--sand);border-radius:12px;padding:16px 20px;margin-bottom:20px;
+  }
+  .config-box.connected{background:#dff3e3;}
+  .file-preview{margin-top:8px;}
+  .file-preview img{max-width:120px;border-radius:8px;display:block;}
+  .progress-text{font-size:12px;color:var(--muted);margin-top:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Le Dressing de Rima — Administration produits</h1>
+
+  <div class="config-box" id="configBox">
+    <label style="margin-top:0;">Ta clé d'accès GitHub (token)</label>
+    <input type="text" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <div class="hint">Cette clé reste uniquement dans ton navigateur, sur cet appareil. Elle n'est envoyée qu'à GitHub.</div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="connecter()">Se connecter</button>
+    </div>
+    <div id="configStatus" class="status"></div>
+  </div>
+
+  <div id="mainApp" style="display:none;">
+    <div class="layout">
+
+      <div class="panel">
+        <h2 id="formTitle">Ajouter un produit</h2>
+        <form onsubmit="return enregistrerProduit(event)">
+          <label>Catégorie</label>
+          <select id="f-categorie">
+            <option value="habits">Habits</option>
+            <option value="accessoires">Accessoires</option>
+            <option value="soins">Soins de peau</option>
+          </select>
+
+          <label>Nom</label>
+          <input type="text" id="f-nom" required>
+
+          <label>Description</label>
+          <textarea id="f-description" rows="3" required></textarea>
+
+          <label>Prix</label>
+          <input type="text" id="f-prix" placeholder="10 000 FCFA" required>
+
+          <label>Photo</label>
+          <input type="file" id="f-image-file" accept="image/*" onchange="apercuFichier(this,'apercuImage')">
+          <div class="file-preview" id="apercuImage"></div>
+          <div class="hint">Laisse vide pour garder la photo actuelle. Formats acceptés : jpg, png, webp.</div>
+
+          <label>Vidéo (facultatif)</label>
+          <input type="file" id="f-video-file" accept="video/mp4">
+          <div class="hint">Fichier .mp4, pas trop lourd (idéalement moins de 15 Mo).</div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary" id="saveBtn">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" onclick="nouveauProduit()">Nouveau produit</button>
+            <button type="button" class="btn btn-danger" id="deleteBtn" onclick="supprimerProduit()" style="display:none;">Supprimer</button>
+          </div>
+          <div id="saveStatus" class="status"></div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Produits existants</h2>
+        <div class="tabs">
+          <button class="tab active" data-cat="habits" onclick="changerOnglet('habits')">Habits</button>
+          <button class="tab" data-cat="accessoires" onclick="changerOnglet('accessoires')">Accessoires</button>
+          <button class="tab" data-cat="soins" onclick="changerOnglet('soins')">Soins de peau</button>
+        </div>
+        <div id="listeProduits"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ⚙️ Configuration du dépôt GitHub
+  const GH_OWNER = "modsylladione-Sylla";
+  const GH_REPO = "le-dressing-de-rima";
+  const GH_BRANCH = "main";
+  const GH_API = "https://api.github.com";
+
+  let productsData = null;
+  let productsSha = null;
+  let ongletActif = "habits";
+  let indexEnEdition = null; // index du produit en cours d'édition, null = nouveau
+
+  function ghToken() {
+    return document.getElementById("ghToken").value.trim() || localStorage.getItem("gh_admin_token") || "";
+  }
+
+  function connecter() {
+    const token = document.getElementById("ghToken").value.trim();
+    if (!token) { setStatus("configStatus", "err", "Merci d'entrer ta clé GitHub."); return; }
+    localStorage.setItem("gh_admin_token", token);
+    setStatus("configStatus", "loading", "Connexion en cours...");
+    chargerProduits();
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem("gh_admin_token");
+    if (saved) {
+      document.getElementById("ghToken").value = saved;
+      chargerProduits();
+    }
+  });
+
+  function setStatus(id, type, msg) {
+    const el = document.getElementById(id);
+    el.className = "status " + type;
+    el.textContent = msg;
+  }
+
+  async function ghFetch(path, options = {}) {
+    const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/${path}`, {
+      ...options,
+      headers: {
+        "Authorization": `token ${ghToken()}`,
+        "Accept": "application/vnd.github+json",
+        ...(options.headers || {})
+      }
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(`GitHub a refusé la requête (${res.status}) : ${body.slice(0,200)}`);
+    }
+    return res.json();
+  }
+
+  function b64EncodeUnicode(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  function b64DecodeUnicode(str) {
+    return decodeURIComponent(escape(atob(str)));
+  }
+
+  async function chargerProduits() {
+    try {
+      setStatus("configStatus", "loading", "Chargement des produits...");
+      const data = await ghFetch(`contents/products.json?ref=${GH_BRANCH}`);
+      productsSha = data.sha;
+      productsData = JSON.parse(b64DecodeUnicode(data.content));
+      document.getElementById("configBox").classList.add("connected");
+      setStatus("configStatus", "ok", "Connecté ✓ — produits chargés.");
+      document.getElementById("mainApp").style.display = "block";
+      renderListe();
+    } catch (e) {
+      setStatus("configStatus", "err", "Erreur : " + e.message);
+    }
+  }
+
+  function changerOnglet(cat) {
+    ongletActif = cat;
+    document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.cat === cat));
+    renderListe();
+  }
+
+  function renderListe() {
+    const container = document.getElementById("listeProduits");
+    const items = productsData[ongletActif] || [];
+    if (items.length === 0) {
+      container.innerHTML = `<p class="hint">Aucun produit dans cette catégorie pour le moment.</p>`;
+      return;
+    }
+    container.innerHTML = items.map((p, i) => `
+      <div class="prod-item">
+        <div class="prod-info">
+          <img src="../${p.image}" onerror="this.style.display='none'">
+          <div class="prod-text">
+            <h3>${p.nom}</h3>
+            <p>${p.prix}</p>
+          </div>
+        </div>
+        <div class="prod-actions">
+          <button onclick="editerProduit('${ongletActif}', ${i})">Modifier</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function nouveauProduit() {
+    indexEnEdition = null;
+    document.getElementById("formTitle").textContent = "Ajouter un produit";
+    document.getElementById("f-categorie").value = ongletActif;
+    document.getElementById("f-nom").value = "";
+    document.getElementById("f-description").value = "";
+    document.getElementById("f-prix").value = "";
+    document.getElementById("f-image-file").value = "";
+    document.getElementById("f-video-file").value = "";
+    document.getElementById("apercuImage").innerHTML = "";
+    document.getElementById("deleteBtn").style.display = "none";
+    setStatus("saveStatus", "", "");
+    document.getElementById("saveStatus").className = "status";
+  }
+
+  function editerProduit(cat, i) {
+    ongletActif = cat;
+    indexEnEdition = i;
+    const p = productsData[cat][i];
+    document.getElementById("formTitle").textContent = "Modifier : " + p.nom;
+    document.getElementById("f-categorie").value = cat;
+    document.getElementById("f-nom").value = p.nom;
+    document.getElementById("f-description").value = p.description;
+    document.getElementById("f-prix").value = p.prix;
+    document.getElementById("f-image-file").value = "";
+    document.getElementById("f-video-file").value = "";
+    document.getElementById("apercuImage").innerHTML = p.image
+      ? `<img src="../${p.image}">` : "";
+    document.getElementById("deleteBtn").style.display = "inline-flex";
+    setStatus("saveStatus", "", "");
+    document.getElementById("saveStatus").className = "status";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  function apercuFichier(input, previewId) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById(previewId).innerHTML = `<img src="${e.target.result}">`;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function slugify(text) {
+    return text.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploaderFichier(file, dossier, nomBase) {
+    const ext = file.name.split(".").pop().toLowerCase();
+    const chemin = `${dossier}/${nomBase}.${ext}`;
+    const contentB64 = await fileToBase64(file);
+
+    let sha = undefined;
+    try {
+      const existing = await ghFetch(`contents/${chemin}?ref=${GH_BRANCH}`);
+      sha = existing.sha;
+    } catch (e) { /* le fichier n'existe pas encore, pas grave */ }
+
+    await ghFetch(`contents/${chemin}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: `Ajout média : ${chemin}`,
+        content: contentB64,
+        branch: GH_BRANCH,
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    return chemin;
+  }
+
+  async function enregistrerProduit(event) {
+    event.preventDefault();
+    const btn = document.getElementById("saveBtn");
+    btn.disabled = true;
+    setStatus("saveStatus", "loading", "Enregistrement en cours...");
+
+    try {
+      const cat = document.getElementById("f-categorie").value;
+      const nom = document.getElementById("f-nom").value.trim();
+      const description = document.getElementById("f-description").value.trim();
+      const prix = document.getElementById("f-prix").value.trim();
+      const slug = slugify(nom) || "produit-" + Date.now();
+
+      let imagePath = (indexEnEdition !== null && productsData[cat][indexEnEdition]) 
+        ? productsData[cat][indexEnEdition].image : null;
+      let videoPath = (indexEnEdition !== null && productsData[cat][indexEnEdition])
+        ? productsData[cat][indexEnEdition].video : null;
+
+      const imageFile = document.getElementById("f-image-file").files[0];
+      const videoFile = document.getElementById("f-video-file").files[0];
+
+      if (imageFile) {
+        setStatus("saveStatus", "loading", "Envoi de la photo...");
+        imagePath = await uploaderFichier(imageFile, "images", slug);
+      }
+      if (videoFile) {
+        setStatus("saveStatus", "loading", "Envoi de la vidéo...");
+        videoPath = await uploaderFichier(videoFile, "videos", slug);
+      }
+
+      const produit = { nom, description, prix, image: imagePath, video: videoPath || null };
+
+      if (!productsData[cat]) productsData[cat] = [];
+
+      if (indexEnEdition !== null && ongletActif === cat) {
+        productsData[cat][indexEnEdition] = produit;
+      } else {
+        productsData[cat].push(produit);
+      }
+
+      setStatus("saveStatus", "loading", "Sauvegarde de la fiche produit...");
+      await sauvegarderProductsJson(`Mise à jour produit : ${nom}`);
+
+      setStatus("saveStatus", "ok", "Enregistré ! Le site se met à jour dans 1-2 minutes.");
+      ongletActif = cat;
+      changerOnglet(cat);
+      nouveauProduit();
+
+    } catch (e) {
+      setStatus("saveStatus", "err", "Erreur : " + e.message);
+    } finally {
+      btn.disabled = false;
+    }
+    return false;
+  }
+
+  async function supprimerProduit() {
+    if (indexEnEdition === null) return;
+    if (!confirm("Supprimer ce produit définitivement ?")) return;
+    try {
+      setStatus("saveStatus", "loading", "Suppression...");
+      productsData[ongletActif].splice(indexEnEdition, 1);
+      await sauvegarderProductsJson(`Suppression produit`);
+      setStatus("saveStatus", "ok", "Produit supprimé.");
+      renderListe();
+      nouveauProduit();
+    } catch (e) {
+      setStatus("saveStatus", "err", "Erreur : " + e.message);
+    }
+  }
+
+  async function sauvegarderProductsJson(message) {
+    const content = b64EncodeUnicode(JSON.stringify(productsData, null, 2));
+    const result = await ghFetch(`contents/products.json`, {
+      method: "PUT",
+      body: JSON.stringify({
+        message,
+        content,
+        branch: GH_BRANCH,
+        sha: productsSha
+      })
+    });
+    productsSha = result.content.sha;
+  }
+</script>
+</body>
+</html>

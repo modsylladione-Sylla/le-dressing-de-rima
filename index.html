@@ -11,16 +11,16 @@
 <meta property="og:site_name" content="Le Dressing de Rima">
 <meta property="og:title" content="Le Dressing de Rima — Habits, accessoires & soins de peau">
 <meta property="og:description" content="Habits, accessoires et soins de peau. Commande simple sur WhatsApp, livraison Dakar & régions, paiement Wave, Orange Money ou cash.">
-<meta property="og:image" content="https://ledressingderima.netlify.app/og-image.png">
+<meta property="og:image" content="https://YOUR-DOMAIN/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://ledressingderima.netlify.app/">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
 <meta property="og:locale" content="fr_SN">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Le Dressing de Rima">
 <meta name="twitter:description" content="Habits, accessoires et soins de peau. Commande sur WhatsApp, livraison Dakar & régions.">
-<meta name="twitter:image" content="https://ledressingderima.netlify.app/og-image.png">
+<meta name="twitter:image" content="https://YOUR-DOMAIN/og-image.png">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
@@ -425,7 +425,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.7-.17 1.38Z"/></svg>
 </a>
 
-<script src="products.js"></script>
 <script>
   const WHATSAPP_NUMBER = "221764459709"; // ⚠️ Remplacer par le vrai numéro WhatsApp Business
 
@@ -450,9 +449,14 @@
   }
 
   function afficherProduits() {
-    document.getElementById("grid-habits").innerHTML = PRODUITS.habits.map(creerFicheProduit).join("");
-    document.getElementById("grid-accessoires").innerHTML = PRODUITS.accessoires.map(creerFicheProduit).join("");
-    document.getElementById("grid-soins").innerHTML = PRODUITS.soins.map(creerFicheProduit).join("");
+    fetch("products.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(PRODUITS => {
+        document.getElementById("grid-habits").innerHTML = (PRODUITS.habits || []).map(creerFicheProduit).join("");
+        document.getElementById("grid-accessoires").innerHTML = (PRODUITS.accessoires || []).map(creerFicheProduit).join("");
+        document.getElementById("grid-soins").innerHTML = (PRODUITS.soins || []).map(creerFicheProduit).join("");
+      })
+      .catch(err => console.error("Impossible de charger products.json :", err));
   }
   afficherProduits();
 

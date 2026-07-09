@@ -1,0 +1,71 @@
+{
+  "habits": [
+    {
+      "nom": "Robe wax bogolan",
+      "description": "Coupe fluide, tissu wax 100% coton, doublure intérieure confortable. Disponible du S au XL.",
+      "prix": "15 000 FCFA",
+      "image": "images/robe-wax-bogolan.jpg",
+      "video": null
+    },
+    {
+      "nom": "Ensemble deux pièces satin",
+      "description": "Haut cropped et pantalon large assortis, tombé satiné, parfait pour une sortie ou un événement.",
+      "prix": "21 000 FCFA",
+      "image": "images/ensemble-satin.jpg",
+      "video": null
+    },
+    {
+      "nom": "Jupe crayon taille haute",
+      "description": "Coupe ajustée qui structure la silhouette, tissu extensible, fermeture éclair invisible au dos.",
+      "prix": "9 500 FCFA",
+      "image": "images/jupe-crayon.jpg",
+      "video": null
+    }
+  ],
+  "accessoires": [
+    {
+      "nom": "Parure dorée fine",
+      "description": "Collier et boucles d'oreilles assortis, plaqué or, hypoallergénique. S'accorde avec toutes les tenues.",
+      "prix": "8 500 FCFA",
+      "image": "images/parure-doree.jpg",
+      "video": null
+    },
+    {
+      "nom": "Sac bandoulière tressé",
+      "description": "Fait main, anse ajustable, format idéal pour la journée. Coloris disponibles : camel, noir, bordeaux.",
+      "prix": "12 000 FCFA",
+      "image": "images/sac-tresse.jpg",
+      "video": null
+    },
+    {
+      "nom": "Foulard soie imprimé",
+      "description": "Motif exclusif, se porte en cheveux, en pochette ou noué au sac. Toucher doux, teintes chaudes.",
+      "prix": "6 000 FCFA",
+      "image": "images/foulard-soie.jpg",
+      "video": null
+    }
+  ],
+  "soins": [
+    {
+      "nom": "Crème karité pure",
+      "description": "100% naturelle, nourrit intensément les peaux sèches. Sans parfum ajouté, sans paraben.",
+      "prix": "6 000 FCFA",
+      "image": "images/creme-karite.jpg",
+      "video": null
+    },
+    {
+      "nom": "Sérum éclat vitamine C",
+      "description": "Texture légère, unifie le teint et illumine la peau au quotidien. Matin ou soir, sous crème.",
+      "prix": "9 000 FCFA",
+      "image": "images/serum-vitamine-c.jpg",
+      "video": null
+    },
+    {
+      "nom": "Savon noir gommant",
+      "description": "Nettoie en profondeur, affine le grain de peau, s'utilise 2 à 3 fois par semaine au gant.",
+      "prix": "3 500 FCFA",
+      "image": "images/savon-noir.jpg",
+      "video": null
+    }
+  ]
+}
