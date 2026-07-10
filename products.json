@@ -27,6 +27,13 @@
       "prix": "25000",
       "image": "images/veste.jpeg",
       "video": null
+    },
+    {
+      "nom": "Veste",
+      "description": "Tenue chic et professionnelle pour vos sorties",
+      "prix": "25000 CFA",
+      "image": "images/veste.jpeg",
+      "video": null
     }
   ],
   "accessoires": [
