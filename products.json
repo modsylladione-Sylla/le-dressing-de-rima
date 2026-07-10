@@ -20,6 +20,13 @@
       "prix": "9 500 FCFA",
       "image": "images/jupe-crayon.jpg",
       "video": null
+    },
+    {
+      "nom": "Veste",
+      "description": "Tenue professionnelle et chic pour vos sorties",
+      "prix": "25000",
+      "image": "images/veste.jpeg",
+      "video": null
     }
   ],
   "accessoires": [
