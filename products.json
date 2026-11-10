@@ -80,6 +80,13 @@
       "prix": "3 500 FCFA",
       "image": "images/savon-noir.jpg",
       "video": null
+    },
+    {
+      "nom": "Savon noir Glow Shine by Marie",
+      "description": "Savon noir 100% naturel, sans produits chimiques. Pour une peau éclatante, douce et saine, adapté à tous les types de peaux",
+      "prix": "2 500 cfa,3000 cfa,5000 cfa",
+      "image": "images/savon-noir-glow-shine-by-marie.jpeg",
+      "video": "videos/savon-noir-glow-shine-by-marie.mp4"
     }
   ]
 }
