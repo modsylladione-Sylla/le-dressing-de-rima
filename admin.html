@@ -12,10 +12,7 @@
     --sand:#F2E1D3; --blush:#E8B9BE; --ink:#2A2024; --cream:#FBF6EF; --muted:#8a7d78;
   }
   *{box-sizing:border-box;}
-  body{
-    font-family:'Work Sans',sans-serif; background:var(--cream); color:var(--ink);
-    margin:0; padding:28px 20px 80px;
-  }
+  body{font-family:'Work Sans',sans-serif;background:var(--cream);color:var(--ink);margin:0;padding:28px 20px 80px;}
   h1{font-family:'Fraunces',serif;font-weight:600;color:var(--wine-dark);font-size:24px;margin:0 0 20px;text-align:center;}
   .wrap{max-width:1100px;margin:0 auto;}
   .layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
@@ -24,54 +21,49 @@
   .panel h2{font-family:'Fraunces',serif;font-weight:600;color:var(--wine-dark);font-size:19px;margin:0 0 18px;}
   label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;}
   label:first-child{margin-top:0;}
-  input[type=text], input[type=number], textarea, select{
+  input[type=text], input[type=password], textarea, select{
     width:100%;padding:10px 12px;border:1px solid rgba(107,39,55,.25);border-radius:8px;
     font-size:14px;font-family:inherit;background:#fff;
   }
   textarea{resize:vertical;}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .btn{
-    padding:11px 18px;border-radius:999px;border:none;font-size:14px;font-weight:600;
-    cursor:pointer;display:inline-flex;align-items:center;gap:6px;
-  }
+  .btn{padding:11px 18px;border-radius:999px;border:none;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
   .btn-primary{background:var(--wine);color:var(--sand);}
   .btn-secondary{background:var(--sand);color:var(--wine-dark);}
   .btn-danger{background:#fff;color:#a33;border:1px solid #a33;}
   .btn:disabled{opacity:.5;cursor:not-allowed;}
   .btn-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
   .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-  .tab{
-    padding:8px 16px;border-radius:999px;border:1px solid rgba(107,39,55,.25);
-    background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:var(--wine-dark);
-  }
+  .tab{padding:8px 16px;border-radius:999px;border:1px solid rgba(107,39,55,.25);background:#fff;font-size:13px;font-weight:600;cursor:pointer;color:var(--wine-dark);}
   .tab.active{background:var(--wine);color:var(--sand);border-color:var(--wine);}
-  .prod-item{
-    display:flex;justify-content:space-between;align-items:center;
-    border:1px solid rgba(107,39,55,.12);border-radius:10px;padding:12px 14px;margin-bottom:10px;
-  }
-  .prod-item img{width:44px;height:44px;object-fit:cover;border-radius:8px;margin-right:10px;background:var(--sand);}
+  .prod-item{display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(107,39,55,.12);border-radius:10px;padding:12px 14px;margin-bottom:10px;gap:10px;}
+  .prod-thumb{width:46px;height:46px;border-radius:8px;background:var(--sand);margin-right:10px;flex:0 0 auto;object-fit:cover;display:flex;align-items:center;justify-content:center;color:var(--wine);}
   .prod-info{display:flex;align-items:center;flex:1;min-width:0;}
-  .prod-text h3{font-size:14px;margin:0;}
+  .prod-text{min-width:0;}
+  .prod-text h3{font-size:14px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .prod-text p{font-size:12px;color:var(--muted);margin:2px 0 0;}
-  .prod-actions{display:flex;gap:6px;flex-shrink:0;}
-  .prod-actions button{
-    padding:6px 12px;font-size:12px;border-radius:999px;border:1px solid rgba(107,39,55,.25);
-    background:#fff;cursor:pointer;
-  }
-  .status{
-    margin-top:14px;padding:10px 14px;border-radius:8px;font-size:13px;display:none;
-  }
+  .prod-actions button{padding:6px 12px;font-size:12px;border-radius:999px;border:1px solid rgba(107,39,55,.25);background:#fff;cursor:pointer;}
+  .status{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:13px;display:none;}
   .status.ok{background:#dff3e3;color:#1e5c33;display:block;}
   .status.err{background:#fbe3e3;color:#8a2020;display:block;}
   .status.loading{background:var(--sand);color:var(--wine-dark);display:block;}
   .hint{font-size:12px;color:var(--muted);margin-top:6px;}
-  .config-box{
-    background:var(--sand);border-radius:12px;padding:16px 20px;margin-bottom:20px;
-  }
+  .config-box{background:var(--sand);border-radius:12px;padding:16px 20px;margin-bottom:20px;}
   .config-box.connected{background:#dff3e3;}
-  .file-preview{margin-top:8px;}
-  .file-preview img{max-width:120px;border-radius:8px;display:block;}
-  .progress-text{font-size:12px;color:var(--muted);margin-top:4px;}
+
+  /* Photos et vidéos du produit */
+  .media-add{
+    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border:2px dashed rgba(107,39,55,.35);
+    border-radius:12px;background:#fffaf5;color:var(--wine);font-weight:600;font-size:14px;cursor:pointer;
+  }
+  .media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:12px;}
+  .media-item{position:relative;border-radius:10px;overflow:hidden;background:var(--sand);aspect-ratio:1/1;border:1px solid rgba(107,39,55,.15);}
+  .media-item img,.media-item video{width:100%;height:100%;object-fit:cover;display:block;}
+  .badge{position:absolute;left:6px;top:6px;background:var(--wine);color:#fff;font-size:10px;font-weight:600;padding:3px 7px;border-radius:999px;}
+  .badge.new{top:auto;bottom:34px;background:var(--gold);}
+  .badge.vid{left:auto;right:6px;background:rgba(42,32,36,.75);}
+  .media-actions{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:2px;padding:4px;background:rgba(42,32,36,.6);}
+  .media-actions button{border:none;background:rgba(255,255,255,.9);border-radius:6px;font-size:12px;padding:3px 7px;cursor:pointer;}
+  .media-actions button:disabled{opacity:.35;cursor:default;}
 </style>
 </head>
 <body>
@@ -80,7 +72,7 @@
 
   <div class="config-box" id="configBox">
     <label style="margin-top:0;">Ta clé d'accès GitHub (token)</label>
-    <input type="text" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <input type="password" id="ghToken" placeholder="github_pat_..." autocomplete="off">
     <div class="hint">Cette clé reste uniquement dans ton navigateur, sur cet appareil. Elle n'est envoyée qu'à GitHub.</div>
     <div class="btn-row">
       <button class="btn btn-primary" onclick="connecter()">Se connecter</button>
@@ -110,14 +102,11 @@
           <label>Prix</label>
           <input type="text" id="f-prix" placeholder="10 000 FCFA" required>
 
-          <label>Photo</label>
-          <input type="file" id="f-image-file" accept="image/*" onchange="apercuFichier(this,'apercuImage')">
-          <div class="file-preview" id="apercuImage"></div>
-          <div class="hint">Laisse vide pour garder la photo actuelle. Formats acceptés : jpg, png, webp.</div>
-
-          <label>Vidéo (facultatif)</label>
-          <input type="file" id="f-video-file" accept="video/mp4">
-          <div class="hint">Fichier .mp4, pas trop lourd (idéalement moins de 15 Mo).</div>
+          <label>Photos et vidéos du produit</label>
+          <label class="media-add" for="f-media-files">+ Ajouter des photos ou des vidéos</label>
+          <input type="file" id="f-media-files" accept="image/*,video/mp4,video/webm" multiple style="display:none" onchange="ajouterFichiers(this)">
+          <div class="media-grid" id="mediaGrid"></div>
+          <div class="hint" id="mediaHint">Tu peux en ajouter plusieurs d'un coup. La première est la photo principale (celle de la boutique) ; utilise ◀ ▶ pour changer l'ordre et ✕ pour retirer.</div>
 
           <div class="btn-row">
             <button type="submit" class="btn btn-primary" id="saveBtn">Enregistrer</button>
@@ -143,16 +132,18 @@
 </div>
 
 <script>
-  // ⚙️ Configuration du dépôt GitHub
   const GH_OWNER = "modsylladione-Sylla";
   const GH_REPO = "le-dressing-de-rima";
   const GH_BRANCH = "main";
   const GH_API = "https://api.github.com";
+  const MAX_VIDEO_MO = 25;
 
   let productsData = null;
   let productsSha = null;
   let ongletActif = "habits";
-  let indexEnEdition = null; // index du produit en cours d'édition, null = nouveau
+  let indexEnEdition = null;   // position du produit modifié (null = nouveau produit)
+  let catEnEdition = null;     // catégorie du produit modifié
+  let mediasEdition = [];      // {type:'image'|'video', src?, file?, preview?}
 
   function ghToken() {
     return document.getElementById("ghToken").value.trim() || localStorage.getItem("gh_admin_token") || "";
@@ -176,8 +167,12 @@
 
   function setStatus(id, type, msg) {
     const el = document.getElementById(id);
-    el.className = "status " + type;
+    el.className = "status" + (type ? " " + type : "");
     el.textContent = msg;
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   }
 
   async function ghFetch(path, options = {}) {
@@ -191,16 +186,21 @@
     });
     if (!res.ok) {
       const body = await res.text();
-      throw new Error(`GitHub a refusé la requête (${res.status}) : ${body.slice(0,200)}`);
+      throw new Error(`GitHub a refusé la requête (${res.status}) : ${body.slice(0, 200)}`);
     }
     return res.json();
   }
 
-  function b64EncodeUnicode(str) {
-    return btoa(unescape(encodeURIComponent(str)));
-  }
-  function b64DecodeUnicode(str) {
-    return decodeURIComponent(escape(atob(str)));
+  function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64DecodeUnicode(str) { return decodeURIComponent(escape(atob(str))); }
+
+  // Liste photos/vidéos d'un produit (nouveau format "medias" ou ancien format image/video)
+  function mediasDuProduit(p) {
+    if (Array.isArray(p.medias) && p.medias.length) return p.medias.filter(m => m && m.src).map(m => ({type: m.type, src: m.src}));
+    const l = [];
+    if (p.image) l.push({type: "image", src: p.image});
+    if (p.video) l.push({type: "video", src: p.video});
+    return l;
   }
 
   async function chargerProduits() {
@@ -213,6 +213,7 @@
       setStatus("configStatus", "ok", "Connecté ✓ — produits chargés.");
       document.getElementById("mainApp").style.display = "block";
       renderListe();
+      renderMedias();
     } catch (e) {
       setStatus("configStatus", "err", "Erreur : " + e.message);
     }
@@ -231,104 +232,151 @@
       container.innerHTML = `<p class="hint">Aucun produit dans cette catégorie pour le moment.</p>`;
       return;
     }
-    container.innerHTML = items.map((p, i) => `
-      <div class="prod-item">
-        <div class="prod-info">
-          <img src="../${p.image}" onerror="this.style.display='none'">
-          <div class="prod-text">
-            <h3>${p.nom}</h3>
-            <p>${p.prix}</p>
+    container.innerHTML = items.map((p, i) => {
+      const medias = mediasDuProduit(p);
+      const img = medias.find(m => m.type === "image");
+      const thumb = img ? `<img class="prod-thumb" src="${esc(img.src)}" alt="">`
+        : `<div class="prod-thumb">${medias.length ? "&#9654;" : ""}</div>`;
+      const nb = medias.length > 1 ? ` · ${medias.length} médias` : "";
+      return `
+        <div class="prod-item">
+          <div class="prod-info">
+            ${thumb}
+            <div class="prod-text"><h3>${esc(p.nom)}</h3><p>${esc(p.prix)}${nb}</p></div>
           </div>
-        </div>
-        <div class="prod-actions">
-          <button onclick="editerProduit('${ongletActif}', ${i})">Modifier</button>
-        </div>
-      </div>
-    `).join("");
+          <div class="prod-actions"><button onclick="editerProduit('${ongletActif}', ${i})">Modifier</button></div>
+        </div>`;
+    }).join("");
   }
 
+  // ---------- Photos / vidéos du formulaire ----------
+  function renderMedias() {
+    const grid = document.getElementById("mediaGrid");
+    const last = mediasEdition.length - 1;
+    grid.innerHTML = mediasEdition.map((m, i) => {
+      const url = m.preview || m.src;
+      const visuel = m.type === "video"
+        ? `<video src="${esc(url)}" muted preload="metadata"></video><span class="badge vid">Vidéo</span>`
+        : `<img src="${esc(url)}" alt="">`;
+      return `
+        <div class="media-item">
+          ${visuel}
+          ${i === 0 ? '<span class="badge">Principale</span>' : ''}
+          ${m.file ? '<span class="badge new">Nouveau</span>' : ''}
+          <div class="media-actions">
+            <button type="button" onclick="deplacerMedia(${i},-1)" ${i === 0 ? "disabled" : ""}>&#9664;</button>
+            <button type="button" onclick="deplacerMedia(${i},1)" ${i === last ? "disabled" : ""}>&#9654;</button>
+            <button type="button" onclick="retirerMedia(${i})">&#10005;</button>
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  function ajouterFichiers(input) {
+    const refuses = [];
+    for (const f of input.files) {
+      const estVideo = f.type.startsWith("video/");
+      const estImage = f.type.startsWith("image/");
+      if (!estVideo && !estImage) { refuses.push(f.name + " (format non accepté)"); continue; }
+      if (estVideo && f.size > MAX_VIDEO_MO * 1024 * 1024) {
+        refuses.push(`${f.name} (${(f.size / 1048576).toFixed(0)} Mo : trop lourde, maximum ${MAX_VIDEO_MO} Mo)`);
+        continue;
+      }
+      mediasEdition.push({type: estVideo ? "video" : "image", file: f, preview: URL.createObjectURL(f)});
+    }
+    input.value = "";
+    renderMedias();
+    if (refuses.length) setStatus("saveStatus", "err", "Fichier(s) non ajouté(s) : " + refuses.join(" ; "));
+  }
+
+  function deplacerMedia(i, d) {
+    const j = i + d;
+    if (j < 0 || j >= mediasEdition.length) return;
+    [mediasEdition[i], mediasEdition[j]] = [mediasEdition[j], mediasEdition[i]];
+    renderMedias();
+  }
+
+  function retirerMedia(i) {
+    mediasEdition.splice(i, 1);
+    renderMedias();
+  }
+
+  // ---------- Formulaire ----------
   function nouveauProduit() {
     indexEnEdition = null;
+    catEnEdition = null;
+    mediasEdition = [];
     document.getElementById("formTitle").textContent = "Ajouter un produit";
     document.getElementById("f-categorie").value = ongletActif;
     document.getElementById("f-nom").value = "";
     document.getElementById("f-description").value = "";
     document.getElementById("f-prix").value = "";
-    document.getElementById("f-image-file").value = "";
-    document.getElementById("f-video-file").value = "";
-    document.getElementById("apercuImage").innerHTML = "";
     document.getElementById("deleteBtn").style.display = "none";
-    setStatus("saveStatus", "", "");
-    document.getElementById("saveStatus").className = "status";
+    renderMedias();
   }
 
   function editerProduit(cat, i) {
     ongletActif = cat;
     indexEnEdition = i;
+    catEnEdition = cat;
     const p = productsData[cat][i];
+    mediasEdition = mediasDuProduit(p);
     document.getElementById("formTitle").textContent = "Modifier : " + p.nom;
     document.getElementById("f-categorie").value = cat;
     document.getElementById("f-nom").value = p.nom;
     document.getElementById("f-description").value = p.description;
     document.getElementById("f-prix").value = p.prix;
-    document.getElementById("f-image-file").value = "";
-    document.getElementById("f-video-file").value = "";
-    document.getElementById("apercuImage").innerHTML = p.image
-      ? `<img src="../${p.image}">` : "";
     document.getElementById("deleteBtn").style.display = "inline-flex";
     setStatus("saveStatus", "", "");
-    document.getElementById("saveStatus").className = "status";
-    window.scrollTo({top:0, behavior:"smooth"});
-  }
-
-  function apercuFichier(input, previewId) {
-    const file = input.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById(previewId).innerHTML = `<img src="${e.target.result}">`;
-    };
-    reader.readAsDataURL(file);
+    renderMedias();
+    window.scrollTo({top: 0, behavior: "smooth"});
   }
 
   function slugify(text) {
-    return text.toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   }
 
-  function fileToBase64(file) {
+  function extensionDe(file) {
+    const m = /\.([a-z0-9]+)$/i.exec(file.name || "");
+    if (m) return m[1].toLowerCase();
+    return (file.type.split("/")[1] || "bin").replace("quicktime", "mov");
+  }
+
+  // Réduit les photos (max 1600 px, JPEG) pour que le site se charge vite sur téléphone
+  async function preparerFichier(m) {
+    const f = m.file;
+    if (m.type !== "image") return {blob: f, ext: extensionDe(f)};
+    try {
+      const bmp = await createImageBitmap(f);
+      const sc = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+      const w = Math.round(bmp.width * sc), h = Math.round(bmp.height * sc);
+      const c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      const ctx = c.getContext("2d");
+      ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(bmp, 0, 0, w, h);
+      const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
+      if (blob && blob.size < f.size) return {blob, ext: "jpg"};
+    } catch (e) { /* on garde l'original */ }
+    return {blob: f, ext: extensionDe(f)};
+  }
+
+  function blobToBase64(blob) {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(",")[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
+      const r = new FileReader();
+      r.onload = () => resolve(r.result.split(",")[1]);
+      r.onerror = reject;
+      r.readAsDataURL(blob);
     });
   }
 
-  async function uploaderFichier(file, dossier, nomBase) {
-    const ext = file.name.split(".").pop().toLowerCase();
-    const chemin = `${dossier}/${nomBase}.${ext}`;
-    const contentB64 = await fileToBase64(file);
-
-    let sha = undefined;
-    try {
-      const existing = await ghFetch(`contents/${chemin}?ref=${GH_BRANCH}`);
-      sha = existing.sha;
-    } catch (e) { /* le fichier n'existe pas encore, pas grave */ }
-
+  async function envoyerSurGithub(blob, chemin) {
+    const content = await blobToBase64(blob);
     await ghFetch(`contents/${chemin}`, {
       method: "PUT",
-      body: JSON.stringify({
-        message: `Ajout média : ${chemin}`,
-        content: contentB64,
-        branch: GH_BRANCH,
-        ...(sha ? { sha } : {})
-      })
+      body: JSON.stringify({message: `Ajout média : ${chemin}`, content, branch: GH_BRANCH})
     });
-
-    return chemin;
   }
 
   async function enregistrerProduit(event) {
@@ -342,43 +390,50 @@
       const nom = document.getElementById("f-nom").value.trim();
       const description = document.getElementById("f-description").value.trim();
       const prix = document.getElementById("f-prix").value.trim();
-      const slug = slugify(nom) || "produit-" + Date.now();
+      const slug = slugify(nom) || "produit";
+      const stamp = Date.now().toString(36);
 
-      let imagePath = (indexEnEdition !== null && productsData[cat][indexEnEdition]) 
-        ? productsData[cat][indexEnEdition].image : null;
-      let videoPath = (indexEnEdition !== null && productsData[cat][indexEnEdition])
-        ? productsData[cat][indexEnEdition].video : null;
-
-      const imageFile = document.getElementById("f-image-file").files[0];
-      const videoFile = document.getElementById("f-video-file").files[0];
-
-      if (imageFile) {
-        setStatus("saveStatus", "loading", "Envoi de la photo...");
-        imagePath = await uploaderFichier(imageFile, "images", slug);
+      // 1) Envoi des nouveaux fichiers, un par un
+      const aEnvoyer = mediasEdition.filter(m => m.file).length;
+      let envoyes = 0;
+      const medias = [];
+      for (let k = 0; k < mediasEdition.length; k++) {
+        const m = mediasEdition[k];
+        if (!m.file) { medias.push({type: m.type, src: m.src}); continue; }
+        envoyes++;
+        setStatus("saveStatus", "loading", `Envoi du fichier ${envoyes} sur ${aEnvoyer}... (ne ferme pas la page)`);
+        const {blob, ext} = await preparerFichier(m);
+        const dossier = m.type === "video" ? "videos" : "images";
+        const chemin = `${dossier}/${slug}-${stamp}-${k + 1}.${ext}`;
+        await envoyerSurGithub(blob, chemin);
+        medias.push({type: m.type, src: chemin});
       }
-      if (videoFile) {
-        setStatus("saveStatus", "loading", "Envoi de la vidéo...");
-        videoPath = await uploaderFichier(videoFile, "videos", slug);
-      }
 
-      const produit = { nom, description, prix, image: imagePath, video: videoPath || null };
+      // 2) Fiche produit (image/video gardés pour compatibilité avec l'ancien format)
+      const premiereImage = medias.find(m => m.type === "image");
+      const premiereVideo = medias.find(m => m.type === "video");
+      const produit = {
+        nom, description, prix,
+        image: premiereImage ? premiereImage.src : null,
+        video: premiereVideo ? premiereVideo.src : null,
+        medias
+      };
 
       if (!productsData[cat]) productsData[cat] = [];
-
-      if (indexEnEdition !== null && ongletActif === cat) {
+      if (indexEnEdition !== null && catEnEdition === cat) {
         productsData[cat][indexEnEdition] = produit;
       } else {
+        if (indexEnEdition !== null) productsData[catEnEdition].splice(indexEnEdition, 1);
         productsData[cat].push(produit);
       }
 
       setStatus("saveStatus", "loading", "Sauvegarde de la fiche produit...");
       await sauvegarderProductsJson(`Mise à jour produit : ${nom}`);
 
-      setStatus("saveStatus", "ok", "Enregistré ! Le site se met à jour dans 1-2 minutes.");
       ongletActif = cat;
       changerOnglet(cat);
       nouveauProduit();
-
+      setStatus("saveStatus", "ok", "Enregistré ! Le site se met à jour dans 1 à 2 minutes.");
     } catch (e) {
       setStatus("saveStatus", "err", "Erreur : " + e.message);
     } finally {
@@ -392,11 +447,11 @@
     if (!confirm("Supprimer ce produit définitivement ?")) return;
     try {
       setStatus("saveStatus", "loading", "Suppression...");
-      productsData[ongletActif].splice(indexEnEdition, 1);
-      await sauvegarderProductsJson(`Suppression produit`);
-      setStatus("saveStatus", "ok", "Produit supprimé.");
+      productsData[catEnEdition].splice(indexEnEdition, 1);
+      await sauvegarderProductsJson("Suppression produit");
       renderListe();
       nouveauProduit();
+      setStatus("saveStatus", "ok", "Produit supprimé.");
     } catch (e) {
       setStatus("saveStatus", "err", "Erreur : " + e.message);
     }
@@ -404,14 +459,9 @@
 
   async function sauvegarderProductsJson(message) {
     const content = b64EncodeUnicode(JSON.stringify(productsData, null, 2));
-    const result = await ghFetch(`contents/products.json`, {
+    const result = await ghFetch("contents/products.json", {
       method: "PUT",
-      body: JSON.stringify({
-        message,
-        content,
-        branch: GH_BRANCH,
-        sha: productsSha
-      })
+      body: JSON.stringify({message, content, branch: GH_BRANCH, sha: productsSha})
     });
     productsSha = result.content.sha;
   }
